@@ -20,3 +20,27 @@ jobs:
         password: ${{secrets.DOCKERHUB_PASSWD}}
         repository: ${{secrets.DOCKERHUB_USER}}/webserver
         tags: ${{github.sha}}, latest
+
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v1
+      with:
+        kustomize-version: "3.6.1"
+
+    - name: Update Kubernetes Resources
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKERHUB_USER}}
+      run: |
+        cd k8s
+        kustomize edit set image webserver=$DOCKER_USERNAME/webserver:$GITHUB_SHA
+
+    - name: Commit new tag
+      run: |
+        git config --local user.email "munari.edu@gmail.com"
+        git config --loca user.name "Auto Trigger GitHub Action"
+        git commit -am "Bump docker version"
+
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        repository: dumunari/gitops-essentials
