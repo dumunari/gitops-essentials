@@ -8,4 +8,4 @@ resources:
 images:
 - name: webserver
   newName: emunari/webserver
-  newTag: mytag
+  newTag: e9312d28f80db8a88efae298344fedba12e380e9
