@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver
+  name: go-web-server
 spec:
   selector:
     matchLabels:
-      app: webserver
+      app: go-web-server
   template:
     metadata:
       labels:
-        app: webserver
+        app: go-web-server
     spec:
       containers:
-      - name: webserver
-        image: webserver
+      - name: go-web-server
+        image: go-web-server
         ports:
-        - containerPort: 8080
+        - containerPort: 8000

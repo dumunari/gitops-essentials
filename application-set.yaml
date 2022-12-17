@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: go-apps
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/dumunari/gitops-essentials.git
+        revision: application-set
+        files:
+        - path: "env/**/config.yaml"
+  template:
+    metadata:
+      name: '{{namespace}}-go-apps'
+    spec:
+      project: go-apps
+      source:
+        repoURL: https://github.com/dumunari/gitops-essentials.git
+        targetRevision: application-set
+        path: "apps/*"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
