@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: dev-go-apps
+  name: hom-go-apps
 spec:
   generators:
     - git:
@@ -11,7 +11,7 @@ spec:
         - path: "apps/**/config.yaml"
   template:
     metadata:
-      name: 'dev-{{application}}'
+      name: 'hom-{{application}}'
     spec:
       project: go-apps
       source:
@@ -20,6 +20,4 @@ spec:
         path: "k8s"
       destination:
         server: https://kubernetes.default.svc
-        namespace: dev
-      syncPolicy:
-        automated: {}
+        namespace: hom
