@@ -7,4 +7,4 @@ resources:
 images:
 - name: go-web-server
   newName: emunari/go-web-server
-  newTag: f3e8cad8cbd894e1efa0ec32765e6a5a5cd3283d
+  newTag: 1aac1154ad352c0507e41b6d7ee7de4e1c679a3f
