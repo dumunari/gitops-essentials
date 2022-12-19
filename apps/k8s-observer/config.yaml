@@ -1,0 +1,2 @@
+application: k8s-observer
+repoUrl: https://github.com/dumunari/k8s-observer.git

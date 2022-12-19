@@ -8,16 +8,16 @@ spec:
         repoURL: https://github.com/dumunari/gitops-essentials.git
         revision: application-set
         files:
-        - path: "env/**/config.yaml"
+        - path: "apps/**/config.yaml"
   template:
     metadata:
-      name: '{{namespace}}-go-apps'
+      name: '{{application}}'
     spec:
       project: go-apps
       source:
-        repoURL: https://github.com/dumunari/gitops-essentials.git
-        targetRevision: application-set
-        path: "apps/*"
+        repoURL: "{{repoUrl}}"
+        targetRevision: main
+        path: "k8s"
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
+        namespace: dev

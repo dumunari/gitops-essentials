@@ -1,2 +1,2 @@
-namespace: hom
+application: go-web-server
 repoUrl: https://github.com/dumunari/go-web-server.git
