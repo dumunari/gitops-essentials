@@ -6,7 +6,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/dumunari/gitops-essentials.git
-        revision: application-set
+        revision: application-set-helm
         files:
         - path: "apps/**/config.yaml"
   template:
@@ -16,10 +16,11 @@ spec:
       project: go-apps
       source:
         repoURL: "{{repoUrl}}"
-        targetRevision: main
-        path: "k8s"
+        targetRevision: appset-helm
+        path: "{{application}}-helm-chart"
+        helm:
+          valueFiles:
+            - "values-dev.yaml"
       destination:
         server: https://kubernetes.default.svc
         namespace: dev
-      syncPolicy:
-        automated: {}
