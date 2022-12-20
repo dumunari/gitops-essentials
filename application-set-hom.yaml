@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: "{{repoUrl}}"
         targetRevision: appset-helm
-        path: "helm-chart"
+        path: "{{application}}-helm-chart"
         helm:
           valueFiles:
             - "values-hom.yaml"
